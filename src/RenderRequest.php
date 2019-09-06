@@ -28,6 +28,19 @@ final class RenderRequest
 	private $height;
 
 	/**
+	 * @var string|null
+	 */
+	private $title;
+
+	/**
+	 * @var mixed[]
+	 */
+	private $border = [
+		'size' => 0,
+		'color' => 'black',
+	];
+
+	/**
 	 * @var int[]
 	 */
 	private $lines = [];
@@ -39,6 +52,14 @@ final class RenderRequest
 	 */
 	public function __construct(Renderer $renderer, int $width, int $height)
 	{
+		if ($width < 1) {
+			$width = 1;
+		}
+
+		if ($height < 1) {
+			$height = 1;
+		}
+
 		$this->renderer = $renderer;
 		$this->width = $width;
 		$this->height = $height;
@@ -64,6 +85,19 @@ final class RenderRequest
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getSerialized(): string
+	{
+		return json_encode([
+			'width' => $this->width,
+			'height' => $this->height,
+			'title' => $this->title,
+			'lines' => $this->getLines(),
+		]);
+	}
+
+	/**
 	 * @return int
 	 */
 	public function getWidth(): int
@@ -80,16 +114,102 @@ final class RenderRequest
 	}
 
 	/**
+	 * @return string|null
+	 */
+	public function getTitle(): ?string
+	{
+		return $this->title;
+	}
+
+	/**
+	 * @param string|null $title
+	 * @return RenderRequest
+	 */
+	public function setTitle(?string $title): self
+	{
+		$this->title = $title ? : null;
+
+		return $this;
+	}
+
+	/**
+	 * @return mixed[]
+	 */
+	public function getBorder(): array
+	{
+		return $this->border;
+	}
+
+	/**
+	 * @param int|null $size
+	 * @param string|null $color
+	 * @return RenderRequest
+	 */
+	public function setBorder(?int $size = null, ?string $color = null): self
+	{
+		if ($size !== null && $size < 0) {
+			$size = 0;
+		}
+
+		$this->border = [
+			'size' => $size ?? 0,
+			'color' => $color ?? 'black',
+		];
+
+		return $this;
+	}
+
+	/**
 	 * @return int[]
 	 */
 	public function getLines(): array
 	{
-		return $this->lines;
+		$lines = $this->lines;
+
+		if ($this->border['size'] > 0) {
+			$color = $this->processColor($this->border['color']);
+			$lines[] = [ // top
+				'x' => 1,
+				'y' => 1,
+				'a' => $this->width - 1,
+				'b' => 1,
+				'color' => $color,
+			];
+			$lines[] = [ // left
+				'x' => 1,
+				'y' => 1,
+				'a' => 1,
+				'b' => $this->height - 1,
+				'color' => $color,
+			];
+			$lines[] = [ // right
+				'x' => $this->width - 1,
+				'y' => 1,
+				'a' => $this->width - 1,
+				'b' => $this->height - 1,
+				'color' => $color,
+			];
+			$lines[] = [ // bottom
+				'x' => 1,
+				'y' => $this->height - 1,
+				'a' => $this->width - 1,
+				'b' => $this->height - 1,
+				'color' => $color,
+			];
+		}
+
+		return $lines;
 	}
 
 	public function addLine(int $x, int $y, int $a, int $b, ?string $color = null): self
 	{
-		$this->lines[] = [$x, $y, $a, $b, $this->processColor($color)];
+		$this->lines[] = [
+			'x' => $x,
+			'y' => $y,
+			'a' => $a,
+			'b' => $b,
+			'color' => $this->processColor($color),
+		];
 
 		return $this;
 	}

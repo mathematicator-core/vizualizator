@@ -20,7 +20,16 @@ class SvgCompiler implements Compiler
 			$return .= $this->renderLine($line);
 		}
 
-		return '<svg width="' . $request->getWidth() . '" height="' . $request->getHeight() . '">' . $return . '</svg>';
+		$title = $request->getTitle();
+		$arguments = [
+			'width="' . $request->getWidth() . '"',
+			'height="' . $request->getHeight() . '"',
+		];
+
+		return '<svg ' . implode(' ', $arguments) . '>'
+			. ($title !== null ? '<title>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</title>' : '')
+			. $return
+			. '</svg>';
 	}
 
 	/**
@@ -55,11 +64,11 @@ class SvgCompiler implements Compiler
 	private function renderLine(array $line): string
 	{
 		return $this->renderElement('line', [
-			'x1' => $line[0],
-			'y1' => $line[1],
-			'x2' => $line[2],
-			'y2' => $line[3],
-			'style' => 'stroke:' . $this->getColor($line[4] ?? null) . ';stroke-width:1',
+			'x1' => $line['x'],
+			'y1' => $line['y'],
+			'x2' => $line['a'],
+			'y2' => $line['b'],
+			'style' => 'stroke:' . $this->getColor($line['color'] ?? null) . ';stroke-width:1',
 		]);
 	}
 

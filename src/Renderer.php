@@ -41,8 +41,14 @@ final class Renderer
 		}
 
 		if (($content = $compiler->compile($request)) !== '') {
+			if (($title = $request->getTitle()) !== null) {
+				$title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
+			}
+
 			if ($contentType !== null) {
-				$return = '<img src="data:' . $contentType . ';base64,' . base64_encode($content) . '">';
+				$return = '<img src="data:' . $contentType . ';base64,' . base64_encode($content) . '"'
+					. ($title !== null ? ' alt="' . $title . '" title="' . $title . '"' : '')
+					. '>';
 			} else {
 				$return = $content;
 			}
@@ -51,12 +57,11 @@ final class Renderer
 		}
 
 		$styles = [
-			'border:1px solid #000',
 			'width:' . $request->getWidth() . 'px',
 			'height:' . $request->getHeight() . 'px',
 		];
 
-		return '<div style="' . implode(';', $styles) . '">' . $return . '</div>';
+		return '<div class="vizualizator" style="' . implode(';', $styles) . '">' . $return . '</div>';
 	}
 
 	/**
