@@ -224,8 +224,6 @@ final class RenderRequest
 			return null;
 		}
 
-		$color = trim($color);
-
 		static $names = [
 			'black' => [0, 0, 0],
 			'white' => [255, 255, 255],
@@ -234,7 +232,7 @@ final class RenderRequest
 			'blue' => [0, 0, 255],
 		];
 
-		if (isset($names[$color])) { // 1. Named color
+		if (isset($names[$color = trim($color)])) { // 1. Named color
 			return $names[$color];
 		}
 
