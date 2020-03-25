@@ -58,7 +58,7 @@ abstract class PhpGDCompiler implements Compiler
 
 
 	/**
-	 * @param int[] $line
+	 * @param int[]|null[]|int[][] $line
 	 */
 	protected function renderLine(array $line): void
 	{
