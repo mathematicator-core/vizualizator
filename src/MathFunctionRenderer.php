@@ -5,30 +5,21 @@ declare(strict_types=1);
 namespace Mathematicator\Vizualizator;
 
 
-use Mathematicator\Calculator\Calculator;
-
-class MathFunctionRenderer
+final class MathFunctionRenderer
 {
 
-	/**
-	 * @var Renderer
-	 */
+	/** @var Renderer */
 	private $renderer;
 
-	/**
-	 * @var Calculator
-	 */
-	private $calculator;
 
 	/**
 	 * @param Renderer $renderer
-	 * @param Calculator $calculator
 	 */
-	public function __construct(Renderer $renderer, Calculator $calculator)
+	public function __construct(Renderer $renderer)
 	{
 		$this->renderer = $renderer;
-		$this->calculator = $calculator;
 	}
+
 
 	public function plot(array $tokens, int $width = 500, int $height = 500): string
 	{
@@ -44,5 +35,4 @@ class MathFunctionRenderer
 
 		return $request->render();
 	}
-
 }

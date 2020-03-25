@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Mathematicator\Vizualizator;
 
 
-class SvgCompiler implements Compiler
+final class SvgCompiler implements Compiler
 {
 
 	/**
@@ -32,6 +32,7 @@ class SvgCompiler implements Compiler
 			. '</svg>';
 	}
 
+
 	/**
 	 * @param string $name
 	 * @param string[] $params
@@ -48,6 +49,7 @@ class SvgCompiler implements Compiler
 		return '<' . $name . ' ' . implode(' ', $arguments) . ' />';
 	}
 
+
 	/**
 	 * @param int[]|null $params
 	 * @return string
@@ -61,6 +63,7 @@ class SvgCompiler implements Compiler
 		return 'rgb(' . $params[0] . ',' . $params[1] . ',' . $params[2] . ')';
 	}
 
+
 	private function renderLine(array $line): string
 	{
 		return $this->renderElement('line', [
@@ -71,5 +74,4 @@ class SvgCompiler implements Compiler
 			'style' => 'stroke:' . $this->getColor($line['color'] ?? null) . ';stroke-width:1',
 		]);
 	}
-
 }
