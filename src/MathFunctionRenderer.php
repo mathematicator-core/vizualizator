@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Mathematicator\Vizualizator;
 
 
+use Mathematicator\Tokenizer\Token\IToken;
+
 final class MathFunctionRenderer
 {
 
@@ -21,6 +23,12 @@ final class MathFunctionRenderer
 	}
 
 
+	/**
+	 * @param IToken[] $tokens
+	 * @param int $width
+	 * @param int $height
+	 * @return string
+	 */
 	public function plot(array $tokens, int $width = 500, int $height = 500): string
 	{
 		$request = new RenderRequest($this->renderer, $width, $height);

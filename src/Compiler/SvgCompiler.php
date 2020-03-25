@@ -64,6 +64,10 @@ final class SvgCompiler implements Compiler
 	}
 
 
+	/**
+	 * @param int[] $line
+	 * @return string
+	 */
 	private function renderLine(array $line): string
 	{
 		return $this->renderElement('line', [

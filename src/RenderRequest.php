@@ -29,7 +29,7 @@ final class RenderRequest
 		'color' => 'black',
 	];
 
-	/** @var int[] */
+	/** @var int[]|int[][]|null[] */
 	private $lines = [];
 
 
@@ -158,7 +158,7 @@ final class RenderRequest
 
 
 	/**
-	 * @return int[]
+	 * @return int[][]|null[][]|int[][][]
 	 */
 	public function getLines(): array
 	{

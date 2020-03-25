@@ -57,6 +57,9 @@ abstract class PhpGDCompiler implements Compiler
 	}
 
 
+	/**
+	 * @param int[] $line
+	 */
 	protected function renderLine(array $line): void
 	{
 		imageline($this->image, $line['x'], $line['y'], $line['a'], $line['b'], $this->getParameterColor($line['color'] ?? null));
