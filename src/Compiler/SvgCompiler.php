@@ -65,7 +65,7 @@ final class SvgCompiler implements Compiler
 
 
 	/**
-	 * @param int[]|string[]|null[] $line
+	 * @param mixed[]|mixed[][] $line
 	 * @return string
 	 */
 	private function renderLine(array $line): string

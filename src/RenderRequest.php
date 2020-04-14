@@ -29,7 +29,7 @@ final class RenderRequest
 		'color' => 'black',
 	];
 
-	/** @var int[]|int[][]|null[] */
+	/** @var int[]|int[][]|int[][][]|null[] */
 	private $lines = [];
 
 
