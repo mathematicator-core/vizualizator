@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Mathematicator\Vizualizator;
+namespace Mathematicator\Vizualizator\Compiler;
 
 
-interface Compiler
+use Mathematicator\Vizualizator\RenderRequest;
+
+interface ICompiler
 {
 	/**
 	 * @param RenderRequest $request
