@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Mathematicator\Vizualizator\Tests;
 
 
-use Mathematicator\MandelbrotSet\MandelbrotSetRequest;
 use Mathematicator\Vizualizator\Renderer;
 use Mathematicator\Vizualizator\RenderRequest;
 use Tester\Assert;
