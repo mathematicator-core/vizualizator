@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Mathematicator\Vizualizator;
+namespace Mathematicator\Vizualizator\Compiler;
 
 
-final class SvgCompiler implements Compiler
+use Mathematicator\Vizualizator\RenderRequest;
+
+final class SvgICompiler implements ICompiler
 {
 
 	/**

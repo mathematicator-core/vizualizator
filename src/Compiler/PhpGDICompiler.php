@@ -2,14 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Mathematicator\Vizualizator;
+namespace Mathematicator\Vizualizator\Compiler;
 
 
-abstract class PhpGDCompiler implements Compiler
+use Mathematicator\Vizualizator\RenderRequest;
+
+abstract class PhpGDICompiler implements ICompiler
 {
 
 	/** @var resource */
 	protected $image;
+
+
+	abstract public function compile(RenderRequest $request): string;
 
 
 	/**
@@ -58,10 +63,11 @@ abstract class PhpGDCompiler implements Compiler
 
 
 	/**
-	 * @param int[]|null[]|int[][] $line
+	 * @param null[]|int[][] $line
 	 */
 	protected function renderLine(array $line): void
 	{
+		/** TODO: @phpstan-ignore-next-line */
 		imageline($this->image, $line['x'], $line['y'], $line['a'], $line['b'], $this->getParameterColor($line['color'] ?? null));
 	}
 }
