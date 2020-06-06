@@ -2,16 +2,16 @@
 
 [![Integrity check](https://github.com/mathematicator-core/vizualizator/workflows/Integrity%20check/badge.svg)](https://github.com/mathematicator-core/vizualizator/actions?query=workflow%3A%22Integrity+check%22)
 [![codecov](https://codecov.io/gh/mathematicator-core/vizualizator/branch/master/graph/badge.svg)](https://codecov.io/gh/mathematicator-core/vizualizator)
+[![Latest Stable Version](https://poser.pugx.org/mathematicator-core/vizualizator/v/stable)](https://packagist.org/packages/mathematicator-core/vizualizator)
+[![Latest Unstable Version](https://poser.pugx.org/mathematicator-core/vizualizator/v/unstable)](https://packagist.org/packages/mathematicator-core/vizualizator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](./LICENSE)
+[![PHPStan Enabled](https://img.shields.io/badge/PHPStan-enabled%20L8-brightgreen.svg?style=flat)](https://phpstan.org/)
 
-
-Smart engine for elegant creating images and graphic visualizations.
+Smart engine for creating elegant images and graphic visualizations.
 
 Render to SVG, PNG and JPG. All output is in base64 format valid in HTML document.
 
 ## Installation
-
-Via Composer:
 
 ```shell
 composer require mathematicator-core/vizualizator
@@ -165,6 +165,28 @@ one to the most abstract one:
         </td>
     </tr>
 </table>
+
+**Third-party packages:**
+
+⚠️ Not guaranteed!
+
+<table>
+    <tr>
+        <td>
+            <b>
+            <a href="https://github.com/cothema/math-php-api">
+                REST API
+            </a>
+            </b>
+        </td>
+        <td>
+            Install the whole pack as a REST API service
+            on your server (Docker ready) or
+            access it via public cloud REST API.
+        </td>
+    </tr>
+</table>
+
 
 ## Contribution
 
