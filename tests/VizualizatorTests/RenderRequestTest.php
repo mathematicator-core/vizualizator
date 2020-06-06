@@ -10,18 +10,15 @@ use Mathematicator\Vizualizator\RenderRequest;
 use Tester\Assert;
 use Tester\TestCase;
 
-require __DIR__ . '/../bootstrap.php';
+require __DIR__ . '/../Bootstrap.php';
 
 class RenderRequestTest extends TestCase
 {
-
-
 	public function testEntity(): void
 	{
-		$request = new RenderRequest(new Renderer(),100,100);
+		$request = new RenderRequest(new Renderer(), 100, 100);
 		Assert::same(100, $request->getWidth());
 	}
-
 }
 
 Bootstrap::boot();
