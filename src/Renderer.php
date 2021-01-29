@@ -18,36 +18,26 @@ final class Renderer
 	public const FORMAT_JPG = 'jpg';
 
 
-	/**
-	 * @param int $width
-	 * @param int $height
-	 * @return RenderRequest
-	 */
 	public function createRequest(int $width = 500, int $height = 500): RenderRequest
 	{
 		return new RenderRequest($this, $width, $height);
 	}
 
 
-	/**
-	 * @param RenderRequest $request
-	 * @param string $format
-	 * @return string
-	 */
 	public function render(RenderRequest $request, string $format = self::FORMAT_PNG): string
 	{
 		switch ($format) {
 			case self::FORMAT_PNG:
-				$compiler = new PngCompiler();
+				$compiler = new PngCompiler;
 				$contentType = 'image/png';
 				break;
 			case self::FORMAT_JPG:
-				$compiler = new JpgCompiler();
+				$compiler = new JpgCompiler;
 				$contentType = 'image/jpeg';
 				break;
 			case self::FORMAT_SVG:
 			default:
-				$compiler = new SvgICompiler();
+				$compiler = new SvgICompiler;
 				$contentType = null;
 		}
 
@@ -76,30 +66,18 @@ final class Renderer
 	}
 
 
-	/**
-	 * @param RenderRequest $request
-	 * @return string
-	 */
 	public function renderSvg(RenderRequest $request): string
 	{
 		return $this->render($request, self::FORMAT_SVG);
 	}
 
 
-	/**
-	 * @param RenderRequest $request
-	 * @return string
-	 */
 	public function renderJpg(RenderRequest $request): string
 	{
 		return $this->render($request, self::FORMAT_JPG);
 	}
 
 
-	/**
-	 * @param RenderRequest $request
-	 * @return string
-	 */
 	public function renderPng(RenderRequest $request): string
 	{
 		return $this->render($request, self::FORMAT_PNG);

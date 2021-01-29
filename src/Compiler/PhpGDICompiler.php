@@ -17,12 +17,6 @@ abstract class PhpGDICompiler implements ICompiler
 	abstract public function compile(RenderRequest $request): string;
 
 
-	/**
-	 * @param int $r
-	 * @param int $g
-	 * @param int $b
-	 * @return int
-	 */
 	protected function getColor(int $r = 0, int $g = 0, int $b = 0): int
 	{
 		static $cache = [];
@@ -51,9 +45,6 @@ abstract class PhpGDICompiler implements ICompiler
 	}
 
 
-	/**
-	 * @param RenderRequest $request
-	 */
 	protected function process(RenderRequest $request): void
 	{
 		foreach ($request->getLines() as $line) {

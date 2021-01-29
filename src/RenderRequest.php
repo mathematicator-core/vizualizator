@@ -33,11 +33,6 @@ final class RenderRequest
 	private $lines = [];
 
 
-	/**
-	 * @param Renderer $renderer
-	 * @param int $width
-	 * @param int $height
-	 */
 	public function __construct(Renderer $renderer, int $width, int $height)
 	{
 		if ($width < 1) {
@@ -54,9 +49,6 @@ final class RenderRequest
 	}
 
 
-	/**
-	 * @return string
-	 */
 	public function __toString(): string
 	{
 		return $this->render();
@@ -75,9 +67,6 @@ final class RenderRequest
 	}
 
 
-	/**
-	 * @return string
-	 */
 	public function getSerialized(): string
 	{
 		return (string) json_encode([
@@ -89,27 +78,18 @@ final class RenderRequest
 	}
 
 
-	/**
-	 * @return int
-	 */
 	public function getWidth(): int
 	{
 		return $this->width;
 	}
 
 
-	/**
-	 * @return int
-	 */
 	public function getHeight(): int
 	{
 		return $this->height;
 	}
 
 
-	/**
-	 * @return string|null
-	 */
 	public function getTitle(): ?string
 	{
 		return $this->title;

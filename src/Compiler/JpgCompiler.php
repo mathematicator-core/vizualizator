@@ -9,11 +9,6 @@ use Mathematicator\Vizualizator\RenderRequest;
 
 final class JpgCompiler extends PhpGDICompiler implements ICompiler
 {
-
-	/**
-	 * @param RenderRequest $request
-	 * @return string
-	 */
 	public function compile(RenderRequest $request): string
 	{
 		$image = imagecreatetruecolor($request->getWidth(), $request->getHeight());

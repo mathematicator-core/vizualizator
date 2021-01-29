@@ -9,9 +9,5 @@ use Mathematicator\Vizualizator\RenderRequest;
 
 interface ICompiler
 {
-	/**
-	 * @param RenderRequest $request
-	 * @return string
-	 */
 	public function compile(RenderRequest $request): string;
 }
