@@ -5,32 +5,24 @@ declare(strict_types=1);
 namespace Mathematicator\Vizualizator;
 
 
-use Nette\SmartObject;
-
 final class RenderRequest
 {
-	use SmartObject;
+	private Renderer $renderer;
 
-	/** @var Renderer */
-	private $renderer;
+	private int $width;
 
-	/** @var int */
-	private $width;
+	private int $height;
 
-	/** @var int */
-	private $height;
-
-	/** @var string|null */
-	private $title;
+	private ?string $title = null;
 
 	/** @var mixed[] */
-	private $border = [
+	private array $border = [
 		'size' => 0,
 		'color' => 'black',
 	];
 
 	/** @var int[]|int[][]|int[][][]|null[] */
-	private $lines = [];
+	private array $lines = [];
 
 
 	public function __construct(Renderer $renderer, int $width, int $height)
@@ -55,12 +47,6 @@ final class RenderRequest
 	}
 
 
-	/**
-	 * Smart shortcut.
-	 *
-	 * @param string $format
-	 * @return string
-	 */
 	public function render(string $format = Renderer::FORMAT_PNG): string
 	{
 		return $this->renderer->render($this, $format);
@@ -74,7 +60,7 @@ final class RenderRequest
 			'height' => $this->height,
 			'title' => $this->title,
 			'lines' => $this->getLines(),
-		]);
+		], JSON_THROW_ON_ERROR);
 	}
 
 
@@ -96,10 +82,6 @@ final class RenderRequest
 	}
 
 
-	/**
-	 * @param string|null $title
-	 * @return RenderRequest
-	 */
 	public function setTitle(?string $title): self
 	{
 		$this->title = $title ?: null;
@@ -117,11 +99,6 @@ final class RenderRequest
 	}
 
 
-	/**
-	 * @param int|null $size
-	 * @param string|null $color
-	 * @return RenderRequest
-	 */
 	public function setBorder(?int $size = null, ?string $color = null): self
 	{
 		if ($size !== null && $size < 0) {
@@ -181,14 +158,6 @@ final class RenderRequest
 	}
 
 
-	/**
-	 * @param int $x
-	 * @param int $y
-	 * @param int $a
-	 * @param int $b
-	 * @param string|null $color
-	 * @return $this
-	 */
 	public function addLine(int $x, int $y, int $a, int $b, ?string $color = null): self
 	{
 		/** @phpstan-ignore-next-line */
@@ -205,7 +174,6 @@ final class RenderRequest
 
 
 	/**
-	 * @param string|null $color
 	 * @return int[]|null
 	 */
 	private function processColor(?string $color): ?array

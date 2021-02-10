@@ -33,7 +33,6 @@ abstract class PhpGDICompiler implements ICompiler
 
 	/**
 	 * @param int[]|null $params
-	 * @return int
 	 */
 	protected function getParameterColor(?array $params): int
 	{

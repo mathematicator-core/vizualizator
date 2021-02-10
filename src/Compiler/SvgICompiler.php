@@ -12,7 +12,6 @@ final class SvgICompiler implements ICompiler
 	public function compile(RenderRequest $request): string
 	{
 		$return = '';
-
 		foreach ($request->getLines() as $line) {
 			$return .= $this->renderLine($line);
 		}
@@ -31,14 +30,11 @@ final class SvgICompiler implements ICompiler
 
 
 	/**
-	 * @param string $name
 	 * @param string[]|int[]|null[] $params
-	 * @return string
 	 */
 	private function renderElement(string $name, array $params): string
 	{
 		$arguments = [];
-
 		foreach ($params as $key => $value) {
 			$arguments[] = $key . '="' . $value . '"';
 		}
@@ -49,7 +45,6 @@ final class SvgICompiler implements ICompiler
 
 	/**
 	 * @param int[]|string[]|null $params
-	 * @return string
 	 */
 	private function getColor(?array $params): string
 	{
@@ -63,7 +58,6 @@ final class SvgICompiler implements ICompiler
 
 	/**
 	 * @param mixed[]|mixed[][] $line
-	 * @return string
 	 */
 	private function renderLine(array $line): string
 	{

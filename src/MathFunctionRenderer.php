@@ -9,9 +9,7 @@ use Mathematicator\Tokenizer\Token\IToken;
 
 final class MathFunctionRenderer
 {
-
-	/** @var Renderer */
-	private $renderer;
+	private Renderer $renderer;
 
 
 	public function __construct(Renderer $renderer)
@@ -22,7 +20,6 @@ final class MathFunctionRenderer
 
 	/**
 	 * @param IToken[] $tokens
-	 * @return string
 	 */
 	public function plot(array $tokens, int $width = 500, int $height = 500): string
 	{
